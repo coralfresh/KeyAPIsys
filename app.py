@@ -4,6 +4,7 @@ import os
 
 app = Flask(__name__)
 
+# Simple in-memory license database
 LICENSES = {
     "coralbot-S": {"activated": False, "expires_at": None, "valid_days": 7}
 }
@@ -11,6 +12,10 @@ LICENSES = {
 @app.route('/')
 def home():
     return "Welcome to the License API!"
+
+@app.route('/favicon.ico')
+def favicon():
+    return '', 404  # Returns 404 for favicon request
 
 @app.route('/check-license', methods=['POST'])
 def check_license():
@@ -41,4 +46,4 @@ def check_license():
             return jsonify({"valid": True, "message": "✅ License is valid.", "expires_at": license_data["expires_at"]}), 200
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=3121)  # Set port to 3121
+    app.run(host='0.0.0.0', port=3121)
