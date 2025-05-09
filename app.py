@@ -60,5 +60,5 @@ def activate_license():
 
 # This is critical for Render
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
+    port = int(os.environ.get('PORT', 3121))
     app.run(host='0.0.0.0', port=port)
